@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganografi RGB Channel Rotation</title>
+    <style>
+        body { font-family: sans-serif; margin: 0;}
+        nav { position: sticky; top: 0; background-color: #007bff; color: white; padding: 4px; text-align: center;}
+        main { max-width: 800px; margin: auto; margin-top: 10px; }
+        .container { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px black }
+        h1, h2, p { text-align: center; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        .flash { background-color: #f8d7da; color: #721c24; padding: 10px 10px 10px 0px; border-radius: 5px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Steganografi RGB Channel Rotation - Sembunyikan Pesan Rahasia Dalam Gambar</h1>
+    </nav>
+    <main>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <div class="container">
+            <h2>Sembunyikan Pesanmu Di Sini
+            </h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="encode">
+                <label for="file">Pilih Gambar Wadah:</label>
+                <input type="file" name="file" required>
+                <label for="secret_message">Masukkan Pesan Rahasia:</label>
+                <input type="text" name="secret_message" placeholder="Masukkan Pesan Rahasianya..." required>
+                <button type="submit">Sembunyikan Pesan Rahasia</button>
+            </form>
+        </div>
+        <div class="container">
+            <h2>Ungkap Pesan Tersembunyi</h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="decode">
+                <label for="original_file">Pilih Gambar Asli:</label>
+                <input type="file" name="original_file" required>
+                <label for="stego_file">Pilih Gambar yang Ada Pesannya:</label>
+                <input type="file" name="stego_file" required>
+                <button type="submit">Intip Pesan Rahasia</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
